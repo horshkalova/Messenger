@@ -25,12 +25,18 @@ public class CreateMessageActivity extends Activity {
         // explicit intent
 //        Intent intent = new Intent(this, ReceiveMessageActivity.class);
 //        intent.putExtra(ReceiveMessageActivity.EXTRA_MESSAGE, messageText);
+//        startActivity(intent);
 
         // implicit intent
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, messageText);
 
-        startActivity(intent);
+        String chooserTitle = getString(R.string.chooser_title);
+
+        // always ask user which activity to use
+        Intent chosenIntent = Intent.createChooser(intent, chooserTitle);
+
+        startActivity(chosenIntent);
     }
 }
